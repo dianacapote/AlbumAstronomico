@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra estrella</title>
+
+<!-- ============================================
+     FUENTES
+     Poppins para textos, Outfit para títulos grandes.
+     Si quieres cambiar la fuente, cámbiala aquí y en style.css (variable --font-display / --font-body)
+============================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================
+     FONDO ANIMADO (cielo nocturno de acuarela)
+     Este canvas se dibuja y anima desde script.js
+     No lo borres, es el fondo de TODA la página.
+============================================ -->
+<canvas id="sky-canvas"></canvas>
+
+<!-- Capa de nubes de acuarela en CSS puro (se mueven muy lento) -->
+<div class="watercolor-clouds" aria-hidden="true">
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+  <div class="cloud cloud-4"></div>
+</div>
+
+<!-- ============================================
+     PANTALLA DE INICIO
+============================================ -->
+<section id="intro-screen">
+  <div class="intro-text-wrap">
+    <p class="intro-line" data-delay="0">Hay millones de estrellas en el universo...</p>
+    <!-- CAMBIA AQUÍ LA SEGUNDA FRASE SI QUIERES -->
+    <p class="intro-line" data-delay="1">...pero solo una consiguió convertirse en mi lugar favorito.</p>
+  </div>
+  <button id="enter-btn" class="btn-glow">
+    <span>Entrar</span>
+  </button>
+</section>
+
+<!-- ============================================
+     CONTENIDO PRINCIPAL (oculto hasta pulsar "Entrar")
+============================================ -->
+<main id="main-content">
+
+  <!-- Línea de constelación que conecta todo el recorrido, se dibuja con el scroll -->
+  <svg id="constellation-line" aria-hidden="true" preserveAspectRatio="none">
+    <path id="constellation-path" d=""></path>
+  </svg>
+
+  <!-- ============================================
+       HERO / CABECERA DEL VIAJE
+  ============================================ -->
+  <header class="journey-hero">
+    <p class="eyebrow">un mapa de nuestro cielo</p>
+    <h1>Nuestra historia,<br>escrita entre estrellas</h1>
+    <p class="hero-sub"><!-- CAMBIA AQUÍ EL SUBTÍTULO --> Cada capítulo es una noche que decidimos guardar para siempre.</p>
+    <div class="scroll-hint">
+      <span>desliza</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       SECCIONES DE LA HISTORIA (8)
+       Cada una: número de capítulo, foto, título y texto.
+       Cambia las fotos, títulos y textos donde se indica.
+  ============================================ -->
+
+  <section class="chapter" data-chapter="1">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- FOTO 1: cámbiala por tu imagen real -->
+      <img src="img/foto1.jpg" alt="Foto 1" class="chapter-photo">
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">01</span>
+      <h2><!-- ESCRIBE AQUÍ EL TÍTULO DEL CAPÍTULO 1 -->Míranos, qué lindas</h2>
+      <p><!-- ESCRIBE AQUÍ EL TEXTO DEL CAPÍTULO 1 -->Haciendo vision boards juntas. Bueno... tú haciéndolos y yo admirando todo lo que haces, porque las manualidades no son precisamente mi fuerte jsjs. Pero al final eso es lo de menos; lo más bonito es imaginar, planear y soñar con todo lo que nos espera juntas. :3</p>
+    </div>
+  </section>
+
+  <section class="chapter chapter-reverse" data-chapter="2">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- VIDEO 2 -->
+      <video class="chapter-photo chapter-video" src="img/video2.mp4" autoplay muted loop playsinline preload="metadata">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">02</span>
+      <h2><!-- TÍTULO 2 -->Besitoooo</h2>
+      <p><!-- TEXTO 2 -->Porque tus besos son de mis cosas favoritas. Asi que sigue llenándome de besitos y de paso con labial para que todo el mundo sepa que tengo la suerte de andar con una princesa.</p>
+    </div>
+  </section>
+
+  <section class="chapter" data-chapter="3">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- FOTO 3 -->
+      <img src="img/foto3.jpg" alt="Foto 3" class="chapter-photo">
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">03</span>
+      <h2><!-- TÍTULO 3 -->Algún día</h2>
+      <p><!-- TEXTO 3 -->Paseando entre muebles e imaginando cómo sería decorar nuestro hogar juntas. BTW nos vemos demasiado lindas juntas jijiji.</p>
+    </div>
+  </section>
+
+  <section class="chapter chapter-reverse" data-chapter="4">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- VIDEO 4 -->
+      <video class="chapter-photo chapter-video" src="img/video4.mp4" autoplay muted loop playsinline preload="metadata">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">04</span>
+      <h2><!-- TÍTULO 4 -->Mis ojos no mienten</h2>
+      <p><!-- TEXTO 4 -->No me había dado cuenta hasta que vi este video. Ahora entiendo que así se ve alguien completamente enamorada. Y sí... esa soy yo mirándote con ojitos de amor.</p>
+    </div>
+  </section>
+
+  <section class="chapter" data-chapter="5">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- FOTO 5 -->
+      <img src="img/foto5.jpg" alt="Foto 5" class="chapter-photo">
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">05</span>
+      <h2><!-- TÍTULO 5 -->Ven acá</h2>
+      <p><!-- TEXTO 5 -->Porque creo que nunca me voy a cansar de darte besitos. Siempre voy a querer robarte uno más, aunque ya te haya dado cien. :b</p>
+    </div>
+  </section>
+
+  <section class="chapter chapter-reverse" data-chapter="6">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- VIDEO 6 -->
+      <video class="chapter-photo chapter-video" src="img/video6.mp4" autoplay muted loop playsinline preload="metadata">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">06</span>
+      <h2><!-- TÍTULO 6 -->Qué linda te ves</h2>
+      <p><!-- TEXTO 6 -->Me dio muchísima ternura cómo te apenaste cuando notaste que te estaba grabando. Pero tenía que hacerlo; verte tan preciosa con las flores que te regalé era la combinación perfecta para hacerme feliz.</p>
+    </div>
+  </section>
+
+  <section class="chapter" data-chapter="7">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- FOTO 7 -->
+      <img src="img/foto7.jpg" alt="Foto 7" class="chapter-photo">
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">07</span>
+      <h2><!-- TÍTULO 7 -->Combinaditas</h2>
+      <p><!-- TEXTO 7 -->No sé por qué me hace tan feliz combinar contigo, pero supongo que es porque cualquier detalle, por pequeño que sea, se vuelve especial cuando lo comparto contigo. </p>
+    </div>
+  </section>
+
+  <section class="chapter chapter-reverse" data-chapter="8">
+    <div class="chapter-marker"></div>
+    <div class="chapter-media reveal-media">
+      <!-- VIDEO 8 -->
+      <video class="chapter-photo chapter-video" src="img/video8.mp4" autoplay muted loop playsinline preload="metadata">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <div class="media-frame"></div>
+    </div>
+    <div class="chapter-copy reveal-copy">
+      <span class="chapter-number">08</span>
+      <h2><!-- TÍTULO 8 -->Tu lienzo</h2>
+      <p><!-- TEXTO 8 -->Podrás pintarme el brazo, llenarme de labial o despeinarme todo lo que quieras. Si eres tú, nunca me voy a quejar. Si quieres volver a usar mi brazo como libreta, yo feliz. jsjs</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECCIÓN NASA
+       "Así veía la NASA el universo ese día"
+       Tarjetas: foto nuestra / foto NASA / descripción
+       Puedes usar el buscador de imágenes de la NASA:
+       https://images.nasa.gov  o  https://apod.nasa.gov
+  ============================================ -->
+  <section id="nasa-section">
+    <p class="eyebrow">un archivo cósmico</p>
+    <h2>Así veía la NASA el universo ese día</h2>
+    <p class="nasa-intro">Mientras nosotras vivíamos nuestra historia, el universo también dejaba su propio registro.</p>
+
+    <div class="nasa-grid">
+
+      <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 1 - FOTO NUESTRA -->
+          <img src="img/nuestra1.jpg" alt="Nuestra foto 1">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 1 - FOTO NASA -->
+          <img src="img/nasa1.jpg" alt="El universo el dia que te vi por primera vez">
+        </div>
+        <p class="nasa-date"><!-- FECHA 1 -->05 / 12 / 2025</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 1 -->Donde nacen las estrellas, el polvo y la luz pintan un hermoso rojo cósmico, igual que el rojo que hizo imposible dejar de mirarte aquel día.</p>
+      </div>
+
+      <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 2 - FOTO NUESTRA -->
+          <img src="img/nuestra2.jpg" alt="Nuestra foto 2">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 2 - FOTO NASA -->
+            <video src="img/nasa2.mp4" autoplay muted loop playsinline preload="metadata">
+              Tu navegador no puede reproducir este video.
+            </video>
+        </div>
+        <p class="nasa-date"><!-- FECHA 2 -->24 / 03 / 2026</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 2 -->La gravedad no es igual en toda la Tierra: cambia ligeramente según el lugar debido a la distribución de la masa bajo la superficie, igual a como cambiaste mi gravedad al hablar conmigo por primera vez.</p>
+      </div>
+
+           <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 6 - FOTO NUESTRA -->
+          <img src="img/nuestra6.jpg" alt="Nuestra foto 3">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 6 - FOTO NASA -->
+          <img src="img/nasa6.jpg" alt="El universo el dia que te dije que me gustabas">
+        </div>
+        <p class="nasa-date"><!-- FECHA 6 -->15 / 04 / 2026</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 6 -->La ISS pasó justo frente a la Luna, un encuentro breve y preciso, igual al momento en que nuestras miradas y nuestros sentimientos coincidieron cuando te dije que me gustabas.</p>
+      </div>
+
+      <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 3 - FOTO NUESTRA -->
+          <img src="img/nuestra3.jpg" alt="Nuestra foto 4">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 3 - FOTO NASA -->
+          <img src="img/nasa3.jpg" alt="El universo el dia que nos dimos nuestro primer beso">
+        </div>
+        <p class="nasa-date"><!-- FECHA 3 -->17 / 04 / 2026</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 3 -->El universo nos mostró su belleza más intensa ese día, igual que tu sonrisa cuando nos dimos nuestro primer beso.</p>
+      </div>
+
+      <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 4 - FOTO NUESTRA -->
+          <img src="img/nuestra4.jpg" alt="Nuestra foto 5">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 4 - FOTO NASA -->
+          <img src="img/nasa4.jpg" alt="El universo el dia que tuvimos nuestra primera cita">
+        </div>
+        <p class="nasa-date"><!-- FECHA 4 -->26 / 04 / 2026</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 4 -->En una enorme montaña cósmica de gas y polvo, una estrella comenzaba a abrirse paso con su propia luz, igual a como ese día empezaste a iluminar mi vida en nuestra primera cita.</p>
+      </div>
+
+      <div class="nasa-card">
+        <div class="nasa-card-photo">
+          <!-- NASA TARJETA 5 - FOTO NUESTRA -->
+          <img src="img/nuestra5.jpg" alt="Nuestra foto 6">
+        </div>
+        <div class="nasa-arrow">↓</div>
+        <div class="nasa-card-photo nasa-photo">
+          <!-- NASA TARJETA 5 - FOTO NASA -->
+          <img src="img/nasa5.jpg" alt="El universo el dia que nos hicimos novias">
+        </div>
+        <p class="nasa-date"><!-- FECHA 5 -->16 / 06 / 2026</p>
+        <p class="nasa-desc"><!-- DESCRIPCIÓN 5 -->Cassini fotografió a Saturno rodeado por sus lunas y sus anillos; el universo también parecía celebrar que, por fin, nosotras empezábamos a girar en la misma órbita cuando hicimos novias.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       CARTA FINAL (glassmorphism)
+  ============================================ -->
+  <section id="letter-section">
+    <p class="eyebrow">para ti</p>
+    <div class="letter-card">
+      <div class="letter-seal">✦</div>
+      <!-- ============================================
+           ESCRIBE AQUÍ TU CARTA
+           Puedes usar varios párrafos <p>...</p>
+      ============================================ -->
+      <p class="letter-paragraph">Querida Victoria...</p>
+      <p class="letter-paragraph">Ya tenemos un mes de novias, y pasó suuuper rápido. Aunque nos conocemos desde hace unos meses más, quise revivir algunos de los recuerdos más bonitos que hemos construido desde entonces hasta hoy. El universo es inmenso y sigue expandiéndose cada día; de la misma manera, quiero que nuestros recuerdos, nuestros sueños y nuestra vida juntas no dejen de crecer. Habrá días fáciles y otros no tanto, pero mientras sigamos eligiéndonos, no habrá distancia, obstáculo ni tormenta que no podamos atravesar juntas. Este apenas es el primer capítulo de una historia que espero escribir contigo por muchísimo tiempo.</p>
+      <p class="letter-signature"><!-- TU FIRMA -->Con todo mi cielo, Diana</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MÚSICA
+       Coloca tu archivo mp3 en la carpeta /audio
+       y cambia el "src" de abajo por su nombre.
+  ============================================ -->
+  <audio id="bg-audio" loop preload="none">
+    <!-- CAMBIA AQUÍ EL NOMBRE DE TU CANCIÓN -->
+    <source src="audio/musiquitaparati.mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-toggle" aria-label="Reproducir música">
+    <span class="music-icon">♪</span>
+    <span class="music-label">Musiquita para ti</span>
+  </button>
+
+  <!-- ============================================
+       BOTÓN FINAL "Te amo"
+  ============================================ -->
+  <section id="finale-section">
+    <p class="finale-pretext">Si has llegado hasta aquí...</p>
+    <button id="finale-btn" class="btn-glow btn-finale">
+      <span>Te amo</span>
+    </button>
+    <p id="finale-message" class="finale-message">
+      <!-- CAMBIA AQUÍ EL MENSAJE FINAL SI QUIERES -->
+      Gracias por ser mi estrella favorita en este cielo tan grande.
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>hecho con todo mi cielo, para ti ✦</p>
+  </footer>
+
+</main>
+
+<!-- Contenedor donde se dibujan las estrellas fugaces y el confeti del botón final -->
+<div id="finale-fx-layer" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+Carpeta libre para cualquier recurso extra que quieras añadir
+(iconos propios, texturas, un favicon, etc.). No es obligatoria para que la web funcione.

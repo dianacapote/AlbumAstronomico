@@ -1,0 +1,6 @@
+Coloca aquí vuestra canción en formato mp3.
+
+Nómbrala: nuestra-cancion.mp3
+
+O, si prefieres otro nombre, cámbialo también en index.html en esta línea:
+<source src="audio/nuestra-cancion.mp3" type="audio/mpeg">

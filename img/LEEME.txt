@@ -1,0 +1,9 @@
+Coloca aquí tus fotos con estos nombres exactos (o cambia los nombres también en index.html):
+
+foto1.jpg ... foto8.jpg   -> las 8 fotos de los capítulos de la historia
+nuestra1.jpg, nuestra2.jpg, nuestra3.jpg -> vuestras fotos para la sección NASA
+nasa1.jpg, nasa2.jpg, nasa3.jpg -> las fotos que descargues de la NASA para esas mismas fechas
+
+Puedes buscar imágenes de la NASA de un día concreto en:
+https://apod.nasa.gov/apod/astroarchive.html
+https://images.nasa.gov
